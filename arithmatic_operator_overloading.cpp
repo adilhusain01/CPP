@@ -55,6 +55,15 @@ class fraction{
         return fnew;
     }
 
+    fraction operator/(fraction const & f) {
+        int temp_nume=nume*f.deno;
+        int temp_deno=deno*f.nume;
+
+        fraction fnew(temp_nume, temp_deno);
+        fnew.simplify();
+        return fnew;
+    }
+
     bool operator==(fraction f){
         fraction ftemp(nume, deno);
         ftemp.simplify();
@@ -77,7 +86,7 @@ class fraction{
 
 
 int main() {
-    //Addition
+    //Add
 
     fraction a1(1,2);
     fraction a2(3,4);
@@ -103,6 +112,15 @@ int main() {
     fraction m3=m1*m2;
     cout<<m1.nume<<"/"<<m1.deno<<" x "<<m2.nume<<"/"<<m2.deno<<" : ";
     m3.print();
+
+    //Divide
+
+    fraction d1(1,2);
+    fraction d2(3,4);
+
+    fraction d3=d1/d2;
+    cout<<d1.nume<<"/"<<d1.deno<<" // "<<d2.nume<<"/"<<d2.deno<<" : ";
+    d3.print();
 
     //Equality  check
 
