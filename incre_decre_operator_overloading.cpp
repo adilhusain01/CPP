@@ -25,13 +25,20 @@ class fraction{
         }
     }
 
-    fraction operator++(){
-        nume=nume+deno*1;
-        
-        fraction fnew(nume, deno);
-        return fnew;
+    fraction operator++(int){
+        fraction ftemp=*this;
+
+        nume=nume+deno;
+        simplify();
+        return ftemp;
     }
- 
+
+    fraction & operator++(){
+        nume=nume+deno;
+        simplify();
+        return *this;
+    }
+
     void simplify(){
         int common=gcd(nume, deno);
         deno=deno/common;
@@ -44,10 +51,26 @@ class fraction{
 };
 
 int main(){
+    //Post increment
+
+    cout<<"Post-Increment -> "<<endl;
     fraction f1(1,2);
-    f1.print();
-    fraction f2=(f1++);
+    fraction f2=f1++;
+    cout<<"f2 :: ";
     f2.print();
+    cout<<"f1 :: ";
+    f1.print();
+
+
+    //Pre increment
+
+    cout<<"\nPre-Increment -> "<<endl;
+    fraction p1(1,2);
+    fraction p2=++p1;
+    cout<<"p2 :: ";
+    p2.print();
+    cout<<"p1 :: ";
+    p1.print();    
 
     return 0;
 }
